@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For You ❤️</title>
+
+<style>
+
+body{
+background: linear-gradient(135deg,#ffe6eb,#fff5f7);
+font-family: Arial;
+text-align:center;
+padding:40px;
+overflow:hidden;
+}
+
+/* floating hearts background */
+
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-110vh);opacity:0;}
+}
+
+/* card */
+
+.card{
+background:white;
+max-width:700px;
+margin:auto;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+h1{
+color:#ff4d6d;
+}
+
+p{
+font-size:18px;
+line-height:1.7;
+color:#444;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+margin:10px;
+}
+
+.yes{
+background:#ff4d6d;
+color:white;
+}
+
+.no{
+background:#ccc;
+}
+
+#message{
+display:none;
+}
+
+#buttons{
+display:none;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FIRST SCREEN -->
+
+<div id="question" class="card">
+
+<h1>I want to say something… ❤️</h1>
+
+<p>Please hear me out.</p>
+
+<button class="yes" onclick="showMessage()">Yes ❤️</button>
+<button class="no" onclick="noError()">No</button>
+
+</div>
+
+
+<!-- MESSAGE SCREEN -->
+
+<div id="message" class="card">
+
+<h1>I’m Sorry ❤️</h1>
+
+<p id="text"></p>
+
+<div id="buttons">
+
+<button class="yes" onclick="forgive()">Forgive me 🥺</button>
+<button class="no" id="runaway">No</button>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+/* error if he presses no */
+
+function noError(){
+alert("Error: You have to listen first 😌");
+}
+
+
+/* show apology */
+
+function showMessage(){
+
+document.getElementById("question").style.display="none";
+document.getElementById("message").style.display="block";
+
+typeMessage();
+
+}
+
+
+/* typing animation */
+
+let message = `I’m really sorry sweetheart. I never meant to make you feel bad or make it seem like I was blaming you. 
+The last thing I would ever want is to hurt you or make you feel unappreciated or unheard. 
+You mean so much to me, and sometimes I don’t express that properly even though I feel it very deeply.
+
+I truly appreciate you for who you are my love for your patience, your effort, and the way you care about the people in your life. 
+You are someone who is very special to me and I value you more than I can properly put into words. 
+Thinking that I might have made you feel otherwise honestly hurts my heart.
+
+Please know that I would never take you for granted. I care about you so much and I really am sorry for how things felt from your side. 
+I just want to apologise and say that I know i am stupid and sometimes speak nonsense and just baby i would be very happy if you forgive me because you matter a lot to me.`;
+
+
+let i = 0;
+
+function typeMessage(){
+
+if(i < message.length){
+
+document.getElementById("text").innerHTML += message.charAt(i);
+
+i++;
+
+setTimeout(typeMessage,30);
+
+}else{
+
+document.getElementById("buttons").style.display="block";
+
+}
+
+}
+
+
+/* forgive button */
+
+function forgive(){
+
+alert("Yay I love you ❤️");
+
+}
+
+
+/* runaway no button */
+
+let noBtn = document.getElementById("runaway");
+
+noBtn.addEventListener("mouseover", function(){
+
+this.style.position="absolute";
+this.style.left=Math.random()*80+"%";
+this.style.top=Math.random()*80+"%";
+
+});
+
+
+/* floating hearts */
+
+setInterval(function(){
+
+let heart = document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"%";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove()},6000);
+
+},500);
+
+</script>
+
+</body>
+</html>
